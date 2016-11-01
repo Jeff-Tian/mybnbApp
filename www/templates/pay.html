@@ -1,0 +1,23 @@
+<ion-view view-title="付款以准备接收图片">
+    <ion-content>
+        <form ng-submit="submit()">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">房源编号</span>
+                    <input type="text" ng-model="data.houseNumber" placeholder="房源链接最后一串数字，如14047326">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">电子邮箱</span>
+                    <input type="text" ng-model="data.email" placeholder="用来接收下载好的高清无码图片">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">微信号码</span>
+                    <input type="text" ng-model="data.wechat" placeholder="便于进房东群，交流经验介绍生意">
+                </label>
+                <label class="item">
+                    <button class="button button-block button-positive" type="submit">提交</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
