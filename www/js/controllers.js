@@ -66,8 +66,31 @@ angular.module('starter.controllers', ['clientConfigModule'])
         };
     }])
 
-    .controller('PayCtrl', ['$scope', '$http', 'config', '$state', '$stateParams', function ($scope, $http, config, $state, $stateParams) {
+    .controller('PayCtrl', ['$scope', '$http', 'config', '$state', '$stateParams', '$ionicModal', function ($scope, $http, config, $state, $stateParams, $ionicModal) {
         console.log($stateParams);
+
+        $ionicModal.fromTemplateUrl('templates/paid-modal.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function (modal) {
+            $scope.modal = modal;
+        });
+
+        $scope.paid = function () {
+            $scope.openModal();
+        };
+
+        $scope.openModal = function () {
+            $scope.modal.show();
+        };
+
+        $scope.closeModal = function () {
+            $scope.modal.hide();
+        };
+
+        $scope.$on('$destroy', function () {
+            $scope.modal.remove();
+        })
     }])
 
     .controller('PlaylistCtrl', function ($scope, $stateParams) {
