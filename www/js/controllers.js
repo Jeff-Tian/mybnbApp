@@ -41,7 +41,7 @@ angular.module('starter.controllers', ['clientConfigModule'])
         };
     })
 
-    .controller('OrderCtrl', ['$scope', '$http', 'config', '$state', function ($scope, $http, config, $state) {
+    .controller('OrderCtrl', ['$scope', '$http', 'config', '$state', '$ionicLoading', function ($scope, $http, config, $state, $ionicLoading) {
         $scope.data = {
             houseNumber: null,
             email: null,
@@ -49,15 +49,19 @@ angular.module('starter.controllers', ['clientConfigModule'])
         };
 
         $scope.submit = function () {
+            $ionicLoading.show();
             $http.put(config.serviceUrls.orders.create, $scope.data)
                 .then(function (xhr) {
-                    console.log(xhr);
                     $state.go('app.pay', {
                         order_id: xhr.data._id
                     });
                 })
                 .catch(function (xhr) {
                     console.error(xhr);
+                    $scope.errorMessages = xhr.data;
+                })
+                .finally(function () {
+                    $ionicLoading.hide();
                 });
         };
     }])
