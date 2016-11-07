@@ -67,6 +67,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                     }
                 }
             })
+            .state('app.paid', {
+                url: '/paid/:paymentMethod/:orderId',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/paid.html',
+                        controller: 'PaidCtrl'
+                    }
+                }
+            })
 
             .state('app.single', {
                 url: '/playlists/:playlistId',

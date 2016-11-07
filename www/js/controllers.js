@@ -45,16 +45,23 @@ angular.module('starter.controllers', ['clientConfigModule'])
         $scope.data = {
             houseNumber: null,
             email: null,
-            wechat: null
+            wechat: null,
+            taobaoOrderId: null
         };
 
         $scope.submit = function () {
-            $ionicLoading.show();
             $http.put(config.serviceUrls.orders.create, $scope.data)
                 .then(function (xhr) {
-                    $state.go('app.pay', {
-                        order_id: xhr.data._id
-                    });
+                    if ($scope.data.taobaoOrderId) {
+                        $state.go('app.paid', {
+                            paymentMethod: 'taobao',
+                            orderId: $scope.data.taobaoOrderId
+                        });
+                    } else {
+                        $state.go('app.pay', {
+                            order_id: xhr.data._id
+                        });
+                    }
                 })
                 .catch(function (xhr) {
                     console.error(xhr);
@@ -67,8 +74,6 @@ angular.module('starter.controllers', ['clientConfigModule'])
     }])
 
     .controller('PayCtrl', ['$scope', '$http', 'config', '$state', '$stateParams', '$ionicModal', function ($scope, $http, config, $state, $stateParams, $ionicModal) {
-        console.log($stateParams);
-
         $ionicModal.fromTemplateUrl('templates/paid-modal.html', {
             scope: $scope,
             animation: 'slide-in-up'
@@ -91,6 +96,10 @@ angular.module('starter.controllers', ['clientConfigModule'])
         $scope.$on('$destroy', function () {
             $scope.modal.remove();
         })
+    }])
+
+    .controller('PaidCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+
     }])
 
     .controller('PlaylistCtrl', function ($scope, $stateParams) {

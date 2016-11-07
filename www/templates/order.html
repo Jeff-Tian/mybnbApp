@@ -25,6 +25,10 @@
                     <span class="input-label">微信号码</span>
                     <input type="text" ng-model="data.wechat" placeholder="便于进房东群，交流经验介绍生意" ng-required="true">
                 </label>
+                <label class="item item-input">
+                    <span class="input-label">淘宝订单号</span>
+                    <input type="text" ng-model="data.taobaoOrderId" placeholder="如果你是从淘宝上购买的" ng-required="false">
+                </label>
                 <label class="item">
                     <button class="button button-block button-positive" type="submit" ng-disabled="!orderForm.$valid">
                         提交
@@ -34,7 +38,7 @@
 
             <div class="card">
                 <div class="item item-text-wrap">
-                    批量下载 airbnb 高清无码照片，输入 房源编号、email 和微信号码，下载完成后的照片将发送你的指定的邮箱。
+                    批量下载 airbnb 高清无码照片，从未如此简单：输入 房源编号、email 和微信号码，下载完成后的照片将发送你的指定的邮箱。
                 </div>
             </div>
         </form>
