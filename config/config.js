@@ -1,15 +1,18 @@
 var config = {
     local: {
         mode: 'local',
-        port: 3001
+        port: 3001,
+        version: '1.1.2'
     },
     staging: {
         mode: 'staging',
-        port: '3001'
+        port: '3001',
+        version: '1.1.2'
     },
     prd: {
         mode: 'prd',
-        port: process.env.PORT || 3001
+        port: process.env.PORT || 3001,
+        version: '1.1.2'
     }
 };
 

@@ -6,7 +6,7 @@ fi
 
 if [ -z "$APP_NAME" ]; then
     echo "app name not set"
-    echo "default to 'mybnb'"
+    echo "default to 'mybnbApp'"
     APP_NAME="mybnb"
 fi
 

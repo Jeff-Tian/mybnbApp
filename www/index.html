@@ -17,8 +17,8 @@
       }
     </script>-->
 
-    <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="lib/ionic/css/ionic.min.css?<%= app.version %>" rel="stylesheet">
+    <link href="css/style.css?<%= app.version %>" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -32,8 +32,8 @@
 
     <!-- your app's js -->
     <script src="virtual-js/config.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
+    <script src="js/app.js?<%= app.version %>"></script>
+    <script src="js/controllers.js?<%= app.version %>"></script>
 </head>
 
 <body ng-app="starter">

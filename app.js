@@ -5,6 +5,7 @@ const app = express();
 const util = require('util');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const ejs = require('ejs');
 
 app.use(favicon(path.join(__dirname, 'www', 'img/ionic.png')));
 app.use(function (req, res, next) {
@@ -19,10 +20,26 @@ app.use(function (req, res, next) {
     domain.run(next);
 });
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+
+
+app.use(function (req, res, next) {
+    res.locals.app = {
+        version: require('./config/config').version
+    };
+
+    next();
+});
+
+app.get('/', function (req, res, next) {
+    res.render('index.html');
+});
+
+app.get('/version', function (req, res, next) {
+    res.json(res.locals.app.version);
+});
 
 app.use(express.static(path.join(__dirname, 'www'), {
     etag: true,
@@ -48,5 +65,9 @@ app.use('/virtual-js/config.js', function (req, res, next) {
 });
 
 app.use(require('./service-proxy'));
+
+app.engine('html', ejs.renderFile);
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/www');
 
 module.exports = app;
